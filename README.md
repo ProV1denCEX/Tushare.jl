@@ -1,5 +1,5 @@
 # Tushare.jl
-A API for Tushare in Julia
+API for Tushare in Julia
 
 ## API supported:
 All APIs in Tushare Pro
