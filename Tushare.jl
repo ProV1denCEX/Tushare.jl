@@ -61,7 +61,7 @@ module Tushare
     export get_stock_dailyBasic
     export get_stock_blockTrade
     export get_stock_repurchase
-    export get_stock_top10Hotest
+    export get_stock_Hotest
     export get_stock_companyInfo
     export get_stock_pledgeDetail
     export get_stock_marginDetail
@@ -184,7 +184,7 @@ module Tushare
     # list_date 	str 	上市日期
     # delist_date 	str 	退市日期
     # is_hs 	str 	是否沪深港通标的，N否 H沪股通 S深股通
-    function get_stock_list(s_api::String = "stock_basic",
+    function get_stock_list(;s_api::String = "stock_basic",
         d_params :: Dict = Dict(), s_fields :: String = "ts_code, symbol, name,
         area, industry, fullname, enname, market, exchange, curr_type, list_status,
         list_date, delist_date, is_hs")
@@ -213,7 +213,7 @@ module Tushare
     # cal_date 	str 	日历日期
     # is_open 	int 	是否交易 0休市 1交易
     # pretrade_date 	str 	上一个交易日
-    function get_stock_calendar(s_api::String = "trade_cal",
+    function get_stock_calendar(;s_api::String = "trade_cal",
         d_params :: Dict = Dict("exchange" => "SSE"), s_fields :: String = "exchange, cal_date,
         is_open")
 
@@ -250,7 +250,7 @@ module Tushare
     # employees 	int 	Y 	员工人数
     # main_business 	str 	Y 	主要业务及产品
     # business_scope 	str 	Y 	经营范围
-    function get_stock_companyInfo(s_api::String = "stock_company",
+    function get_stock_companyInfo(;s_api::String = "stock_company",
         d_params :: Dict = Dict("exchange" => "SSE"), s_fields :: String = "ts_code, exchange,
         chairman, manager, secretary, reg_capital, setup_date, province, city, introduction,
         website, email, office, employees, main_business, business_scope")
@@ -279,7 +279,7 @@ module Tushare
     # end_date 	str 	Y 	结束日期
     # ann_date 	str 	Y 	公告日期
     # change_reason 	str 	Y 	变更原因
-    function get_stock_oldCompanyname(s_api::String = "namechange",
+    function get_stock_oldCompanyname(;s_api::String = "namechange",
         d_params :: Dict = Dict(), s_fields :: String = "ts_code, name, start_date,
         end_date, ann_date, change_reason")
 
@@ -304,8 +304,9 @@ module Tushare
     # in_date 	str 	Y 	纳入日期
     # out_date 	str 	Y 	剔除日期
     # is_new 	str 	Y 	是否最新 1是0否
-    function get_stock_HSconst(s_api::String = "hs_const",
-        d_params :: Dict = Dict("hs_type" => "SH"), s_fields :: String = "ts_code,
+    function get_stock_HSconst(d_params :: Dict = Dict("hs_type" => "SH");
+        s_api::String = "hs_const",
+        s_fields :: String = "ts_code,
         hs_type, in_date, out_date, is_new")
 
         # Fetch Data
@@ -337,7 +338,7 @@ module Tushare
     # limit_amount 	float 	Y 	个人申购上限（万股）
     # funds 	float 	Y 	募集资金（亿元）
     # ballot 	float 	Y 	中签率
-    function get_stock_new(s_api::String = "new_share",
+    function get_stock_new(;s_api::String = "new_share",
         d_params :: Dict = Dict(), s_fields :: String = "ts_code, sub_code, name,
         ipo_date, issue_date, amount, market_amount, price, pe, limit_amount, funds, ballot")
 
@@ -447,8 +448,8 @@ module Tushare
     # 10 	母公司调整前报表 	母公司调整之前的原始财务报表数据
     # 11 	调整前合并报表 	调整之前合并报表原数据
     # 12 	母公司调整前报表 	母公司报表发生变更前保留的原数据
-    function get_stock_incomeStatement(s_api::String = "income",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "ts_code,
+    function get_stock_incomeStatement(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "income", s_fields :: String = "ts_code,
         ann_date, f_ann_date, end_date, report_type, comp_type, basic_eps, diluted_eps,
         total_revenue, revenue, int_income, prem_earned, comm_income, n_commis_income,
         n_oth_income, n_oth_b_income, prem_income, out_prem, une_prem_reser, reins_income,
@@ -639,8 +640,8 @@ module Tushare
     # 10 	母公司调整前报表 	母公司调整之前的原始财务报表数据
     # 11 	调整前合并报表 	调整之前合并报表原数据
     # 12 	母公司调整前报表 	母公司报表发生变更前保留的原数据
-    function get_stock_balanceSheet(s_api::String = "balancesheet",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "ts_code,
+    function get_stock_balanceSheet(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "balancesheet", s_fields :: String = "ts_code,
         ann_date, f_ann_date, end_date, report_type, comp_type, total_share, cap_rese,
         undistr_porfit, surplus_rese, money_cap, trad_asset, notes_receiv, accounts_receiv,
         oth_receiv, prepayment, div_receiv, int_receiv, inventories, amor_exp, nca_within_1y,
@@ -798,8 +799,9 @@ module Tushare
     # 10 	母公司调整前报表 	母公司调整之前的原始财务报表数据
     # 11 	调整前合并报表 	调整之前合并报表原数据
     # 12 	母公司调整前报表 	母公司报表发生变更前保留的原数据
-    function get_stock_cashflow(s_api::String = "cashflow",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_cashflow(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "cashflow",
+        s_fields :: String = "
         ts_code,
         ann_date,
         f_ann_date,
@@ -928,8 +930,9 @@ module Tushare
     # first_ann_date 	str 	首次公告日
     # summary 	str 	业绩预告摘要
     # change_reason 	str 	业绩变动原因
-    function get_stock_revenueForcast(s_api::String = "forecast",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_revenueForcast(d_params :: Dict = Dict("ts_code" => "000001.SZ"),
+        s_api::String = "forecast",
+        s_fields :: String = "
         ts_code,
         ann_date,
         end_date,
@@ -999,8 +1002,9 @@ module Tushare
     # perf_summary 	str 	业绩简要说明
     # is_audit 	int 	是否审计： 1是 0否
     # remark 	str 	备注
-    function get_stock_revenueExpress(s_api::String = "express",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_revenueExpress(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "express",
+        s_fields :: String = "
         ts_code,
         ann_date,
         end_date ,
@@ -1076,8 +1080,9 @@ module Tushare
     # imp_ann_date 	str 	Y 	实施公告日
     # base_date 	str 	Y 	基准日
     # base_share 	float 	Y 	基准股本（万）
-    function get_stock_dividend(s_api::String = "dividend",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_dividend(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "dividend",
+        s_fields :: String = "
         ts_code,
         end_date,
         ann_date,
@@ -1285,8 +1290,9 @@ module Tushare
     # q_netprofit_qoq 	float 	归属母公司股东的净利润环比增长率(%)(单季度)
     # equity_yoy 	float 	净资产同比增长率
     # rd_exp 	float 	研发费用
-    function get_stock_finIndicator(s_api::String = "fina_indicator",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_finIndicator(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "fina_indicator",
+        s_fields :: String = "
         ts_code ,
         ann_date,
         end_date ,
@@ -1484,8 +1490,9 @@ module Tushare
     # audit_fees 	float 	审计总费用（元）
     # audit_agency 	str 	会计事务所
     # audit_sign 	str 	签字会计师
-    function get_stock_audit(s_api::String = "fina_audit",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_audit(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "fina_audit",
+        s_fields :: String = "
         ts_code ,
         ann_date ,
         end_date ,
@@ -1526,8 +1533,9 @@ module Tushare
     # bz_cost 	float 	主营业务成本(元)
     # curr_type 	str 	货币代码
     # update_flag 	str 	是否更新
-    function get_stock_mainbz(s_api::String = "fina_mainbz",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_mainbz(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "fina_mainbz",
+        s_fields :: String = "
         ts_code,
         end_date ,
         bz_item ,
@@ -1566,8 +1574,9 @@ module Tushare
     # sgt 	str 	深股通（百万元）
     # north_money 	str 	北向资金（百万元）
     # south_money 	str 	南向资金（百万元）
-    function get_stock_HSGTflow(s_api::String = "moneyflow_hsgt",
-        d_params :: Dict = Dict("trade_date" => "20180101"), s_fields :: String = "
+    function get_stock_HSGTflow(d_params :: Dict = Dict("trade_date" => "20180101");
+        s_api::String = "moneyflow_hsgt",
+        s_fields :: String = "
         trade_date,
         ggt_ss ,
         ggt_sz ,
@@ -1611,8 +1620,9 @@ module Tushare
     # net_amount 	float 	净成交金额（元）
     # buy 	float 	买入金额（元）
     # sell 	float 	卖出金额（元）
-    function get_stock_top10HSGT(s_api::String = "hsgt_top10",
-        d_params :: Dict = Dict("trade_date" => "20180101"), s_fields :: String = "
+    function get_stock_top10HSGT(d_params :: Dict = Dict("trade_date" => "20180101");
+        s_api::String = "hsgt_top10",
+        s_fields :: String = "
         trade_date,
         ts_code,
         name,
@@ -1666,8 +1676,9 @@ module Tushare
     # sz_net_amount 	float 	深市净买入金额（元）
     # sz_buy 	float 	深市买入金额（元）
     # sz_sell 	float 	深市卖出金额（元）
-    function get_stock_top10GGT(s_api::String = "ggt_top10",
-        d_params :: Dict = Dict("trade_date" => "20180101"), s_fields :: String = "
+    function get_stock_top10GGT(d_params :: Dict = Dict("trade_date" => "20180101");
+        s_api::String = "ggt_top10",
+        s_fields :: String = "
         trade_date,
         ts_code ,
         name ,
@@ -1715,8 +1726,9 @@ module Tushare
     # rqye 	float 	融券余额(元)
     # rqmcl 	float 	融券卖出量(股,份,手)
     # rzrqye 	float 	融资融券余额(元)
-    function get_stock_marginBalance(s_api::String = "margin",
-        d_params :: Dict = Dict("trade_date" => "20180101"), s_fields :: String = "
+    function get_stock_marginBalance(d_params :: Dict = Dict("trade_date" => "20180101");
+        s_api::String = "margin",
+        s_fields :: String = "
         trade_date,
         exchange_id ,
         rzye ,
@@ -1757,8 +1769,9 @@ module Tushare
     # rqchl 	float 	融券偿还量(手)
     # rqmcl 	float 	融券卖出量(股,份,手)
     # rzrqye 	float 	融资融券余额(元)
-    function get_stock_marginDetail(s_api::String = "margin_detail",
-        d_params :: Dict = Dict("trade_date" => "20180101"), s_fields :: String = "
+    function get_stock_marginDetail(d_params :: Dict = Dict("trade_date" => "20180101");
+        s_api::String = "margin_detail",
+        s_fields :: String = "
         trade_date,
         ts_code ,
         rzye,
@@ -1802,8 +1815,9 @@ module Tushare
     # holder_name 	str 	股东名称
     # hold_amount 	float 	持有数量（股）
     # hold_ratio 	float 	持有比例
-    function get_stock_top10Holders(s_api::String = "top10_holders",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_top10Holders(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "top10_holders",
+        s_fields :: String = "
         ts_code ,
         ann_date ,
         end_date,
@@ -1842,8 +1856,9 @@ module Tushare
     # end_date 	str 	报告期
     # holder_name 	str 	股东名称
     # hold_amount 	float 	持有数量（股）
-    function get_stock_top10Floatholders(s_api::String = "top10_floatholders",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_top10Floatholders(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "top10_floatholders",
+        s_fields :: String = "
         ts_code ,
         ann_date ,
         end_date,
@@ -1892,8 +1907,9 @@ module Tushare
     # amount_rate 	float 	Y 	龙虎榜成交额占比
     # float_values 	float 	Y 	当日流通市值
     # reason 	str 	Y 	上榜理由
-    function get_stock_top10Hotest(s_api::String = "top_list",
-        d_params :: Dict = Dict("trade_date" => "20180101"), s_fields :: String = "
+    function get_stock_Hotest(d_params :: Dict = Dict("trade_date" => "20180101");
+        s_api::String = "top_list",
+        s_fields :: String = "
         trade_date,
         ts_code,
         name ,
@@ -1944,8 +1960,9 @@ module Tushare
     # sell 	float 	Y 	卖出额（万）
     # sell_rate 	float 	Y 	卖出占总成交比例
     # net_buy 	float 	Y 	净成交额（万）
-    function get_stock_instinfo(s_api::String = "top_inst",
-        d_params :: Dict = Dict("trade_date" => "20180101"), s_fields :: String = "
+    function get_stock_instinfo(d_params :: Dict = Dict("trade_date" => "20180101");
+        s_api::String = "top_inst",
+        s_fields :: String = "
         trade_date,
         ts_code ,
         exalter,
@@ -1987,8 +2004,9 @@ module Tushare
     # rest_pledge 	float 	Y 	限售股份质押数量（万）
     # total_share 	float 	Y 	总股本
     # pledge_ratio 	float 	Y 	质押比例
-    function get_stock_pledge(s_api::String = "pledge_stat",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_pledge(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "pledge_stat",
+        s_fields :: String = "
         ts_code,
         end_date ,
         pledge_count ,
@@ -2011,8 +2029,9 @@ module Tushare
     end
 
     # Get Stock Pledge Detail
-    function get_stock_pledgeDetail(s_api::String = "pledge_detail",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_pledgeDetail(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "pledge_detail",
+        s_fields :: String = "
         ts_code ,
         ann_date ,
         holder_name ,
@@ -2061,7 +2080,7 @@ module Tushare
     # amount 	float 	Y 	回购金额
     # high_limit 	float 	Y 	回购最高价
     # low_limit 	float 	Y 	回购最低价
-    function get_stock_repurchase(s_api::String = "repurchase",
+    function get_stock_repurchase(;s_api::String = "repurchase",
         d_params :: Dict = Dict(), s_fields :: String = "
         ts_code,
         ann_date,
@@ -2096,7 +2115,7 @@ module Tushare
     # code 	str 	Y 	概念分类ID
     # name 	str 	Y 	概念分类名称
     # src 	str 	Y 	来源
-    function get_stock_concept(s_api::String = "concept",
+    function get_stock_concept(;s_api::String = "concept",
         d_params :: Dict = Dict(), s_fields :: String = "
         code,
         name ,
@@ -2127,8 +2146,9 @@ module Tushare
     # name 	str 	Y 	股票名称
     # in_date 	str 	N 	纳入日期
     # out_date 	str 	N 	剔除日期
-    function get_stock_conceptDetail(s_api::String = "concept_detail",
-        d_params :: Dict = Dict("id" => "TS2"), s_fields :: String = "
+    function get_stock_conceptDetail(d_params :: Dict = Dict("id" => "TS2");
+        s_api::String = "concept_detail",
+        s_fields :: String = "
         id,
         ts_code,
         name ,
@@ -2172,8 +2192,9 @@ module Tushare
     # float_ratio 	float 	Y 	流通股份占总股本比率
     # holder_name 	str 	Y 	股东名称
     # share_type 	str 	Y 	股份类型
-    function get_stock_delimit(s_api::String = "share_float",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_delimit(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "share_float",
+        s_fields :: String = "
         ts_code,
         ann_date ,
         float_date ,
@@ -2219,8 +2240,9 @@ module Tushare
     # amount 	float 	Y 	成交金额
     # buyer 	str 	Y 	买方营业部
     # seller 	str 	Y 	卖房营业部
-    function get_stock_blockTrade(s_api::String = "block_trade",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "
+    function get_stock_blockTrade(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "block_trade",
+        s_fields :: String = "
         ts_code ,
         trade_date ,
         price ,
@@ -2303,8 +2325,9 @@ module Tushare
     #     一级行业指数
     #     二级行业指数
     #     三级行业指数
-    function get_index_info(s_api::String = "index_basic",
-        d_params :: Dict = Dict("market" => "SSE"), s_fields :: String = "
+    function get_index_info(d_params :: Dict = Dict("market" => "SSE");
+        s_api::String = "index_basic",
+        s_fields :: String = "
         ts_code ,
         name ,
         fullname ,
@@ -2364,7 +2387,7 @@ module Tushare
     # purc_startdate 	str 	Y 	日常申购起始日
     # redm_startdate 	str 	Y 	日常赎回起始日
     # market 	str 	Y 	E场内O场外
-    function get_fund_info(s_api::String = "fund_basic",
+    function get_fund_info(;s_api::String = "fund_basic",
         d_params :: Dict = Dict(), s_fields :: String = "
         ts_code,
         name ,
@@ -2429,7 +2452,7 @@ module Tushare
     # main_business 	str 	Y 	主要产品及业务
     # org_code 	str 	Y 	组织机构代码
     # credit_code 	str 	Y 	统一社会信用代码
-    function get_fund_company(s_api::String = "fund_company",
+    function get_fund_company(;s_api::String = "fund_company",
         d_params :: Dict = Dict(), s_fields :: String = "
         name ,
         shortname,
@@ -2489,8 +2512,9 @@ module Tushare
     # ear_amount 	float 	Y 	收益分配金额(元)
     # account_date 	str 	Y 	红利再投资到账日
     # base_year 	str 	Y 	份额基准年度
-    function get_fund_dividend(s_api::String = "fund_div",
-        d_params :: Dict = Dict("ts_code" => "161618.OF"), s_fields :: String = "
+    function get_fund_dividend(d_params :: Dict = Dict("ts_code" => "161618.OF");
+        s_api::String = "fund_div",
+        s_fields :: String = "
         ts_code,
         ann_date ,
         imp_anndate ,
@@ -2550,8 +2574,9 @@ module Tushare
     # d_month 	str 	Y 	交割月份
     # last_ddate 	str 	Y 	最后交割日
     # trade_time_desc 	str 	N 	交易时间说明
-    function get_future_basic(s_api::String = "fut_basic",
-        d_params :: Dict = Dict("exchange" => "DCE"), s_fields :: String = "
+    function get_future_basic(d_params :: Dict = Dict("exchange" => "DCE");
+        s_api::String = "fut_basic",
+        s_fields :: String = "
         ts_code ,
         symbol,
         exchange ,
@@ -2600,7 +2625,7 @@ module Tushare
     # cal_date 	str 	Y 	日历日期
     # is_open 	int 	Y 	是否交易 0休市 1交易
     # pretrade_date 	str 	N 	上一个交易日
-    function get_future_calendar(s_api::String = "trade_cal",
+    function get_future_calendar(;s_api::String = "trade_cal",
         d_params :: Dict = Dict(), s_fields :: String = "
         exchange,
         cal_date ,
@@ -2646,8 +2671,9 @@ module Tushare
     # last_ddate 	str 	Y 	最后交割日期
     # quote_unit 	str 	Y 	报价单位
     # min_price_chg 	str 	Y 	最小价格波幅
-    function get_option_info(s_api::String = "opt_basic",
-        d_params :: Dict = Dict("exchange" => "SSE"), s_fields :: String = "
+    function get_option_info(d_params :: Dict = Dict("exchange" => "SSE");
+        s_api::String = "opt_basic",
+        s_fields :: String = "
         ts_code,
         exchange ,
         name ,
@@ -2765,8 +2791,9 @@ module Tushare
     # 63 	照相机
     # 64 	软件服务
     # 65 	系统整合
-    function get_other_twTechincome(s_api::String = "tmt_twincome",
-        d_params :: Dict = Dict("item" => "8"), s_fields :: String = "
+    function get_other_twTechincome(d_params :: Dict = Dict("item" => "8");
+        s_api::String = "tmt_twincome",
+        s_fields :: String = "
         date,
         item ,
         op_income")
@@ -2804,8 +2831,9 @@ module Tushare
     # symbol 	str 	公司代码
     # op_income 	str 	月度营收
     # consop_income 	str 	合并月度营收
-    function get_other_twTechincomeDetail(s_api::String = "tmt_twincomedetail",
-        d_params :: Dict = Dict("item" => "8"), s_fields :: String = "
+    function get_other_twTechincomeDetail(d_params :: Dict = Dict("item" => "8");
+        s_api::String = "tmt_twincomedetail",
+        s_fields :: String = "
         date ,
         item,
         symbol,
@@ -2847,8 +2875,9 @@ module Tushare
     # wom_index 	float 	Y 	口碑指数
     # m_ratio 	float 	Y 	月度占比（%）
     # rank 	int 	Y 	排名
-    function get_other_BOmonthly(s_api::String = "bo_monthly",
-        d_params :: Dict = Dict("date" => "20180101"), s_fields :: String = "
+    function get_other_BOmonthly(d_params :: Dict = Dict("date" => "20180101");
+        s_api::String = "bo_monthly",
+        s_fields :: String = "
         date,
         name,
         list_date ,
@@ -2895,8 +2924,9 @@ module Tushare
     # wom_index 	float 	Y 	口碑指数
     # up_ratio 	float 	Y 	环比变化 （%）
     # rank 	int 	Y 	排名
-    function get_other_BOweekly(s_api::String = "bo_weekly",
-        d_params :: Dict = Dict("date" => "20181224"), s_fields :: String = "
+    function get_other_BOweekly(d_params :: Dict = Dict("date" => "20181224");
+        s_api::String = "bo_weekly",
+        s_fields :: String = "
         date,
         name ,
         avg_price,
@@ -2943,8 +2973,9 @@ module Tushare
     # wom_index 	float 	Y 	口碑指数
     # up_ratio 	float 	Y 	环比变化 （%）
     # rank 	int 	Y 	排名
-    function get_other_BOdaily(s_api::String = "bo_daily",
-        d_params :: Dict = Dict("date" => "20181224"), s_fields :: String = "
+    function get_other_BOdaily(d_params :: Dict = Dict("date" => "20181224");
+        s_api::String = "bo_daily",
+        s_fields :: String = "
         date,
         name ,
         avg_price,
@@ -2989,8 +3020,9 @@ module Tushare
     # avg_price 	float 	Y 	场均票价（元）
     # p_pc 	float 	Y 	场均人次
     # rank 	int 	Y 	排名
-    function get_other_cinermaDaily(s_api::String = "bo_cinema",
-        d_params :: Dict = Dict("date" => "20181224"), s_fields :: String = "
+    function get_other_cinermaDaily(d_params :: Dict = Dict("date" => "20181224");
+        s_api::String = "bo_cinema",
+        s_fields :: String = "
         date,
         c_name ,
         aud_count ,
@@ -3037,8 +3069,9 @@ module Tushare
     # classified 	str 	Y 	影片分类
     # date_range 	str 	Y 	备案日期区间
     # ann_date 	str 	Y 	备案结果发布时间
-    function get_other_filmRecord(s_api::String = "film_record",
-        d_params :: Dict = Dict("ann_date" => "20181224"), s_fields :: String = "
+    function get_other_filmRecord(d_params :: Dict = Dict("ann_date" => "20181224");
+        s_api::String = "film_record",
+        s_fields :: String = "
         rec_no,
         film_name ,
         rec_org ,
@@ -3093,9 +3126,10 @@ module Tushare
     # content 	str 	Y 	内容
     # title 	str 	Y 	标题
     # channels 	str 	Y 	分类
-    function get_other_news(s_api::String = "news",
-        d_params :: Dict = Dict("start_date" => "20181224",
-            "end_date" => "20181225", "src" => "sina"), s_fields :: String = "
+    function get_other_news(d_params :: Dict = Dict("start_date" => "20181224",
+        "end_date" => "20181225", "src" => "sina");
+        s_api::String = "news",
+        s_fields :: String = "
             datetime ,
             content,
             title,
@@ -3128,8 +3162,9 @@ module Tushare
     # date 	str 	Y 	日期
     # title 	str 	Y 	标题
     # content 	str 	Y 	内容
-    function get_other_cctvNews(s_api::String = "cctv_news",
-        d_params :: Dict = Dict("date" => "20181224"), s_fields :: String = "
+    function get_other_cctvNews(d_params :: Dict = Dict("date" => "20181224");
+        s_api::String = "cctv_news",
+        s_fields :: String = "
         date,
         title,
         content")
@@ -3170,8 +3205,9 @@ module Tushare
     # area 	str 	发行地区
     # desc 	str 	描述
     # labels 	str 	标签分类
-    function get_coin_list(s_api::String = "coinlist",
-        d_params :: Dict = Dict("start_date" => "20181224", "end_date" => "20181225"), s_fields :: String = "
+    function get_coin_list(d_params :: Dict = Dict("start_date" => "20181224", "end_date" => "20181225");
+        s_api::String = "coinlist",
+        s_fields :: String = "
         coin,
         en_name,
         cn_name,
@@ -3299,8 +3335,9 @@ module Tushare
     # 82 	yunbi
     # 83 	zaif
     # 84 	zb
-    function get_coin_pair(s_api::String = "coinpair",
-        d_params :: Dict = Dict("exchange" => "huobi"), s_fields :: String = "
+    function get_coin_pair(d_params :: Dict = Dict("exchange" => "huobi");
+        s_api::String = "coinpair",
+        s_fields :: String = "
         trade_date,
         exchange,
         exchange_pair,
@@ -3391,7 +3428,7 @@ module Tushare
     # vn 	越南
     # ws 	萨摩亚
     # za 	南非
-    function get_coin_exchange(s_api::String = "coinexchanges",
+    function get_coin_exchange(;s_api::String = "coinexchanges",
         d_params :: Dict = Dict(), s_fields :: String = "
         exchange,
         name ,
@@ -3449,8 +3486,9 @@ module Tushare
     # bitfinex 	bitfinex 	按成交额度大小优惠
     # fcoin 	fcoin 	交易即挖矿，先收后返
     # coinex 	coin 	交易即挖矿，先收后返
-    function get_coin_fee(s_api::String = "coinfees",
-        d_params :: Dict = Dict("exchange" => "huobi"), s_fields :: String = "
+    function get_coin_fee(d_params :: Dict = Dict("exchange" => "huobi");
+        s_api::String = "coinfees",
+        s_fields :: String = "
         exchange ,
         level,
         maker_fee,
@@ -3501,9 +3539,10 @@ module Tushare
     # UBC7 	币类TOP7项目指数
     # UB7 	市场整体类TOP7项目指数
     # UB20 	市场整体类TOP20项目指数
-    function get_coin_indexConst(s_api::String = "ubindex_constituents",
-        d_params :: Dict = Dict("index_name" => "UBI7", "start_date" => "20180801",
-        "end_date" => "20180901"), s_fields :: String = "
+    function get_coin_indexConst(d_params :: Dict = Dict("index_name" => "UBI7", "start_date" => "20180801",
+    "end_date" => "20180901");
+        s_api::String = "ubindex_constituents",
+        s_fields :: String = "
         trade_date,
         index_name,
         symbol,
@@ -3541,8 +3580,8 @@ module Tushare
     # type 	str 	类型
     # url 	str 	URL
     # datetime 	str 	时间
-    function get_coin_newsJinse(s_api::String = "jinse",
-        d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11"),
+    function get_coin_newsJinse(d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11");
+        s_api::String = "jinse",
         s_fields :: String = "
         title,
         content,
@@ -3579,8 +3618,8 @@ module Tushare
     # type,
     # url,
     # datetime
-    function get_coin_newsBTC(s_api::String = "btc8",
-        d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11"),
+    function get_coin_newsBTC(d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11");
+        s_api::String = "btc8",
         s_fields :: String = "
         title,
         content,
@@ -3617,8 +3656,8 @@ module Tushare
     # type,
     # url,
     # datetime
-    function get_coin_newsBSJ(s_api::String = "bishijie",
-        d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11"),
+    function get_coin_newsBSJ(d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11");
+        s_api::String = "bishijie",
         s_fields :: String = "
         title,
         content,
@@ -3655,8 +3694,8 @@ module Tushare
     # type,
     # url,
     # datetime
-    function get_coin_exchangeAnn(s_api::String = "exchange_ann",
-        d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11"),
+    function get_coin_exchangeAnn(d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11");
+        s_api::String = "exchange_ann",
         s_fields :: String = "
         title,
         content,
@@ -3703,8 +3742,8 @@ module Tushare
     # content_translation 	str 	内容翻译
     # str_posted_at 	str 	发布时间，根据posted_at转换而来
     # create_at 	str 	采集时间
-    function get_coin_exchangeTwitter(s_api::String = "exchange_twitter",
-        d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11"),
+    function get_coin_exchangeTwitter(d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11");
+        s_api::String = "exchange_twitter",
         s_fields :: String = "
         id,
         account_id ,
@@ -3760,8 +3799,8 @@ module Tushare
     # content_translation 	str 	内容翻译
     # str_posted_at 	str 	发布时间，根据posted_at转换而来
     # create_at 	str 	采集时间
-    function get_coin_kolTwitter(s_api::String = "twitter_kol",
-        d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11"),
+    function get_coin_kolTwitter(d_params :: Dict = Dict("start_date" => "2018-08-01 14:15:41", "end_date" => "2018-09-01 16:20:11");
+        s_api::String = "twitter_kol",
         s_fields :: String = "
         id,
         account_id ,
@@ -3815,8 +3854,9 @@ module Tushare
     # pct_chg 	float 	涨跌幅 （未复权，如果是复权请用 通用行情接口 ）
     # vol 	float 	成交量 （手）
     # amount 	float 	成交额 （千元）
-    function get_stock_daily(s_api::String = "daily",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "ts_code,
+    function get_stock_daily(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "daily",
+        s_fields :: String = "ts_code,
         trade_date, open, high, low, close, pre_close, change, pct_chg, vol, amount")
 
         # Fetch Data
@@ -3847,8 +3887,9 @@ module Tushare
     # ts_code 	str 	股票代码
     # trade_date 	str 	交易日期
     # adj_factor 	float 	复权因子
-    function get_stock_adjFactor(s_api::String = "adj_factor",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "ts_code,
+    function get_stock_adjFactor(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "adj_factor",
+        s_fields :: String = "ts_code,
         trade_date, adj_factor")
 
         # Fetch Data
@@ -3893,8 +3934,9 @@ module Tushare
     # free_share 	float 	自由流通股本 （万）
     # total_mv 	float 	总市值 （万元）
     # circ_mv 	float 	流通市值（万元）
-    function get_stock_dailyBasic(s_api::String = "daily_basic",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "ts_code,
+    function get_stock_dailyBasic(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "daily_basic",
+        s_fields :: String = "ts_code,
         trade_date, close, turnover_rate, turnover_rate_f, volume_ratio, pe, pe_ttm,
         pb, ps, ps_ttm, total_share, float_share, free_share, total_mv, circ_mv")
 
@@ -3926,8 +3968,9 @@ module Tushare
     # ann_date 	str 	公告日期
     # suspend_reason 	str 	停牌原因
     # reason_type 	str 	停牌原因类别
-    function get_stock_suspend(s_api::String = "suspend",
-        d_params :: Dict = Dict("ts_code" => "000001.SZ"), s_fields :: String = "ts_code,
+    function get_stock_suspend(d_params :: Dict = Dict("ts_code" => "000001.SZ");
+        s_api::String = "suspend",
+        s_fields :: String = "ts_code,
         suspend_date, resume_date, ann_date, suspend_date, reason_type")
 
         # Fetch Data
@@ -3964,8 +4007,9 @@ module Tushare
     # pct_chg 	float 	涨跌幅
     # vol 	float 	成交量（手）
     # amount 	float 	成交额（千元）
-    function get_index_daily(s_api::String = "index_daily",
-        d_params :: Dict = Dict("ts_code" => "399300.SZ"), s_fields :: String = "
+    function get_index_daily(d_params :: Dict = Dict("ts_code" => "399300.SZ");
+        s_api::String = "index_daily",
+        s_fields :: String = "
         ts_code,
         trade_date,
         close,
@@ -4010,8 +4054,9 @@ module Tushare
     # con_code 	str 	成分代码
     # trade_date 	str 	交易日期
     # weight 	float 	权重
-    function get_index_weightMonthly(s_api::String = "index_weight",
-        d_params :: Dict = Dict("index_code" => "399300.SZ"), s_fields :: String = "
+    function get_index_weightMonthly(d_params :: Dict = Dict("index_code" => "399300.SZ");
+        s_api::String = "index_weight",
+        s_fields :: String = "
         index_code,
         con_code,
         trade_date ,
@@ -4059,8 +4104,9 @@ module Tushare
     # pe 	float 	Y 	市盈率
     # pe_ttm 	float 	Y 	市盈率TTM
     # pb 	float 	Y 	市净率
-    function get_index_basicDaily(s_api::String = "index_dailybasic",
-        d_params :: Dict = Dict("ts_code" => "399300.SZ"), s_fields :: String = "
+    function get_index_basicDaily(d_params :: Dict = Dict("ts_code" => "399300.SZ");
+        s_api::String = "index_dailybasic",
+        s_fields :: String = "
         ts_code,
         trade_date,
         total_mv ,
@@ -4104,8 +4150,9 @@ module Tushare
     # net_asset 	float 	Y 	资产净值
     # total_netasset 	float 	Y 	合计资产净值
     # adj_nav 	float 	Y 	复权单位净值
-    function get_fund_netvalue(s_api::String = "fund_nav",
-        d_params :: Dict = Dict("ts_code" => "001753.OF"), s_fields :: String = "
+    function get_fund_netvalue(d_params :: Dict = Dict("ts_code" => "001753.OF");
+        s_api::String = "fund_nav",
+        s_fields :: String = "
         ts_code ,
         ann_date,
         end_date,
@@ -4147,8 +4194,9 @@ module Tushare
     # amount 	float 	Y 	持有股票数量（股）
     # stk_mkv_ratio 	float 	Y 	占股票市值比
     # stk_float_ratio 	float 	Y 	占流通股本比例
-    function get_fund_portfolio(s_api::String = "fund_portfolio",
-        d_params :: Dict = Dict("ts_code" => "001753.OF"), s_fields :: String = "
+    function get_fund_portfolio(d_params :: Dict = Dict("ts_code" => "001753.OF");
+        s_api::String = "fund_portfolio",
+        s_fields :: String = "
         ts_code,
         ann_date ,
         end_date ,
@@ -4197,8 +4245,9 @@ module Tushare
     # pct_chg 	float 	Y 	涨跌幅(%)
     # vol 	float 	Y 	成交量(手)
     # amount 	float 	Y 	成交额(千元)
-    function get_fund_daily(s_api::String = "fund_daily",
-        d_params :: Dict = Dict("ts_code" => "150008.SZ"), s_fields :: String = "
+    function get_fund_daily(d_params :: Dict = Dict("ts_code" => "150008.SZ");
+        s_api::String = "fund_daily",
+        s_fields :: String = "
         ts_code ,
         trade_date ,
         open ,
@@ -4256,8 +4305,9 @@ module Tushare
     # oi 	float 	Y 	持仓量(手)
     # oi_chg 	float 	Y 	持仓量变化
     # delv_settle 	float 	N 	交割结算价
-    function get_future_daily(s_api::String = "fut_daily",
-        d_params :: Dict = Dict("ts_code" => "CU1811.SHF"), s_fields :: String = "
+    function get_future_daily(d_params :: Dict = Dict("ts_code" => "CU1811.SHF");
+        s_api::String = "fut_daily",
+        s_fields :: String = "
         ts_code ,
         trade_date ,
         pre_close ,
@@ -4314,8 +4364,9 @@ module Tushare
     # short_hld 	int 	Y 	持卖仓量
     # short_chg 	int 	Y 	持卖仓量变化
     # exchange 	str 	N 	交易所
-    function get_future_holding(s_api::String = "fut_holding",
-        d_params :: Dict = Dict("symbol" => "C"), s_fields :: String = "
+    function get_future_holding(d_params :: Dict = Dict("symbol" => "C");
+        s_api::String = "fut_holding",
+        s_fields :: String = "
         trade_date ,
         symbol ,
         broker ,
@@ -4373,8 +4424,9 @@ module Tushare
     # is_ct 	str 	N 	是否折算仓单
     # unit 	str 	Y 	单位
     # exchange 	str 	N 	交易所
-    function get_future_WSR(s_api::String = "fut_wsr",
-        d_params :: Dict = Dict("symbol" => "C"), s_fields :: String = "
+    function get_future_WSR(d_params :: Dict = Dict("symbol" => "C");
+        s_api::String = "fut_wsr",
+        s_fields :: String = "
         trade_date,
         symbol,
         fut_name,
@@ -4434,8 +4486,9 @@ module Tushare
     # short_margin_rate 	float 	Y 	卖投机交易保证金率
     # offset_today_fee 	float 	N 	平今仓手续率
     # exchange 	str 	N 	交易所
-    function get_future_settleInfo(s_api::String = "fut_settle",
-        d_params :: Dict = Dict("trade_date" => "20181114"), s_fields :: String = "
+    function get_future_settleInfo(d_params :: Dict = Dict("trade_date" => "20181114");
+        s_api::String = "fut_settle",
+        s_fields :: String = "
         ts_code ,
         trade_date ,
         settle,
@@ -4493,8 +4546,9 @@ module Tushare
     # vol 	float 	Y 	成交量(手)
     # amount 	float 	Y 	成交金额(万元)
     # oi 	float 	Y 	持仓量(手)
-    function get_option_daily(s_api::String = "opt_daily",
-        d_params :: Dict = Dict("trade_date" => "20181114"), s_fields :: String = "
+    function get_option_daily(d_params :: Dict = Dict("trade_date" => "20181114");
+        s_api::String = "opt_daily",
+        s_fields :: String = "
         ts_code ,
         trade_date ,
         exchange ,
@@ -4545,7 +4599,7 @@ module Tushare
     # 6m 	float 	Y 	6个月
     # 9m 	float 	Y 	9个月
     # 1y 	float 	Y 	1年
-    function get_bond_SHIBOR(s_api::String = "shibor",
+    function get_bond_SHIBOR(;s_api::String = "shibor",
         d_params :: Dict = Dict(), s_fields :: String = "
         date ,
         on ,
@@ -4604,7 +4658,7 @@ module Tushare
     # 9m_a 	float 	Y 	9月_Ask
     # 1y_b 	float 	Y 	1年_Bid
     # 1y_a 	float 	Y 	1年_Ask
-    function get_bond_SHIBORpricing(s_api::String = "shibor_quote",
+    function get_bond_SHIBORpricing(;s_api::String = "shibor_quote",
         d_params :: Dict = Dict(), s_fields :: String = "
         date ,
         bank ,
@@ -4653,7 +4707,7 @@ module Tushare
     # 名称 	类型 	默认显示 	描述
     # date 	str 	Y 	日期
     # 1y 	float 	Y 	1年贷款利率
-    function get_bond_LPR(s_api::String = "shibor_lpr",
+    function get_bond_LPR(;s_api::String = "shibor_lpr",
         d_params :: Dict = Dict(), s_fields :: String = "
         date ,
         1y")
@@ -4694,7 +4748,7 @@ module Tushare
     # 3m 	float 	Y 	3个月
     # 6m 	float 	Y 	6个月
     # 12m 	float 	Y 	12个月
-    function get_bond_LIBOR(s_api::String = "libor",
+    function get_bond_LIBOR(;s_api::String = "libor",
         d_params :: Dict = Dict(), s_fields :: String = "
         date ,
         curr_type ,
@@ -4741,7 +4795,7 @@ module Tushare
     # 3m 	float 	Y 	3个月
     # 6m 	float 	Y 	6个月
     # 12m 	float 	Y 	12个月
-    function get_bond_HIBOR(s_api::String = "hibor",
+    function get_bond_HIBOR(;s_api::String = "hibor",
         d_params :: Dict = Dict(), s_fields :: String = "
         date ,
         on ,
@@ -4785,8 +4839,9 @@ module Tushare
     # vol24 	float 	24小时成交额（美元）
     # supply 	float 	流通总量
     # create_time 	str 	数据采集时间
-    function get_coin_marketValuedaily(s_api::String = "coincap",
-        d_params :: Dict = Dict("trade_date" => 20180806), s_fields :: String = "
+    function get_coin_marketValuedaily(d_params :: Dict = Dict("trade_date" => 20180806);
+        s_api::String = "coincap",
+        s_fields :: String = "
         trade_date,
         coin,
         name,
@@ -4844,9 +4899,10 @@ module Tushare
     # 60min 	60分钟
     # daily 	日线
     # week 	周线
-    function get_coin_daily(s_api::String = "coinbar",
-        d_params :: Dict = Dict("exchange" => "huobi", "symbol" => "bchusdt",
-        "freq" => "daily"), s_fields :: String = "
+    function get_coin_daily(d_params :: Dict = Dict("exchange" => "huobi", "symbol" => "bchusdt",
+        "freq" => "daily");
+        s_api::String = "coinbar",
+        s_fields :: String = "
         symbol,
         date,
         open,
@@ -4883,9 +4939,9 @@ module Tushare
     # 名称 	类型 	描述
     # date 	str 	日期
     # marketcap 	float 	市值
-    function get_coin_BTmarketValue(s_api::String = "btc_marketcap",
-        d_params :: Dict = Dict("start_date" => "20181224",
-        "end_date" => "20181225"), s_fields :: String = "
+    function get_coin_BTmarketValue(d_params :: Dict = Dict("start_date" => "20181224",
+        "end_date" => "20181225"); s_api::String = "btc_marketcap",
+        s_fields :: String = "
         date,
         marketcap")
 
@@ -4916,9 +4972,9 @@ module Tushare
     # date 	str 	日期
     # price 	float 	价格
     # volume 	float 	交易量
-    function get_coin_BTpriceVol(s_api::String = "btc_pricevol",
-        d_params :: Dict = Dict("start_date" => "20181224",
-        "end_date" => "20181225"), s_fields :: String = "
+    function get_coin_BTpriceVol(d_params :: Dict = Dict("start_date" => "20181224",
+        "end_date" => "20181225"); s_api::String = "btc_pricevol",
+        s_fields :: String = "
         date ,
         price,
         volume")
