@@ -20,3 +20,6 @@ You can also visit https://tushare.pro to find how to call each function in this
 
 ## How to get your token
 https://tushare.pro
+
+
+Special thanks to three0s :)
