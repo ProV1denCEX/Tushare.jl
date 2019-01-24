@@ -119,7 +119,7 @@ For example:
 data_sample = Tushare.get_stock_list(Dict(), s_fields = "ts_code")
 ```
 
-For each function's default params and fields, please read https://tushare.pro/document/2 or read Tushare.yaml to get more information.
+The params and fields' names are totally the same with Tushare SDK of Python. You can find them here: https://tushare.pro/document/2. Or read Tushare.yaml to get more information.
 
 ## How to get your token
 https://tushare.pro/document/1?doc_id=13
