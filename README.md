@@ -5,10 +5,10 @@ SDK for Tushare in Julia
 Julia 1.0.1, Windows 10
 
 ## Package Needed
-HTTP.jl
-JSON.jl
-DataFrames.jl
-YAML.jl -> dangerous, may be replaced in the future.
+- HTTP.jl
+- JSON.jl
+- DataFrames.jl
+- YAML.jl -> dangerous, may be replaced in the future.
 
 ## How to install
 To be accomplished. Now you can only download the source code to use this API. Maybe I will make it a package in the near future.
