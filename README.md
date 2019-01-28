@@ -11,7 +11,7 @@ Julia 1.0.1, Windows 10
 - YAML.jl -> dangerous, may be replaced in the future.
 
 ## How to install
-To be accomplished. Now you can only download the source code to use this API. Maybe I will make it a package in the near future.
+To be accomplished. Now you can only download the source code to use this SDK. Maybe I will make it a package in the near future.
 
 ## How to use
 You need copy your token to the Token.txt. This .txt file needs to be placed in the same directory of the source code. I will make it easier to use in the near future.
