@@ -11,7 +11,7 @@ Expr(:block, #= Symbol("C:\Users\IIIIIIII\.julia\packages\Compat\hsya0\src\Compa
   ** incremental compilation may be broken for this module **
 WARNING: Method definition #range(Any, typeof(Base.range), Any, Any) in module Base overwritten.
 ```
-That's ok as the range(a, b) behavior is no more appreciated in Julia. This issue might be fixed by other packages. For more info: https://github.com/JuliaLang/Compat.jl/issues/640
+That's ok as the range(a, b) behavior is no longer appreciated in Julia. This issue might be fixed by other packages. For more info: https://github.com/JuliaLang/Compat.jl/issues/640
 
 ## Package Needed
 - HTTP.jl
