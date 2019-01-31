@@ -408,3 +408,8 @@
   api: btc_pricevol
   default_field: date,price,volume
   default_param: {start_date: '20181224', end_date: '20181225'}
+- name: disclosure
+  type: stock
+  api: disclosure_date
+  default_field: ts_code,ann_date,end_date,pre_date,actual_date,modify_date
+  default_param: {ts_code: 000001.SZ}
