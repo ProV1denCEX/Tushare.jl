@@ -105,6 +105,7 @@ shows as below:
 - get_stock_oldCompanyname
 - get_stock_incomeStatement
 - get_stock_top10Floatholders
+- get_stock_disclosure
 - get_other_news
 - get_other_BOdaily
 - get_other_BOweekly
