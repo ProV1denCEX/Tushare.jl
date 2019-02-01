@@ -6,7 +6,7 @@ module Tushare
 
     # get token from Token.txt
     function get_token()
-        s_dir = joinpath(@__DIR__, "Token.txt")
+        s_dir = joinpath(pwd(), "Token.txt")
         isfile(s_dir) ? s_token = readline(s_dir) : s_token = nothing
         s_token
     end
@@ -119,5 +119,4 @@ module Tushare
 
     const s_tushare_api = "http://api.tushare.pro"
     const s_token = get_token()
-
 end
