@@ -4,15 +4,6 @@ SDK for Tushare in Julia
 ## Environment
 Julia 1.0.1, Julia 1.1.0, Windows 10
 
-> For Julia 1.1.0 and higher version, you will receive a warning:
-```
-WARNING: eval into closed module Base:
-Expr(:block, #= Symbol("C:\Users\IIIIIIII\.julia\packages\Compat\hsya0\src\Compat.jl"):1891 =#, Expr(:call, :range, Expr(:parameters, Expr(:..., :kwargs)), :start, :stop) = Expr(:block, #= Symbol("C:\Users\Frontal Xiang\.julia\packages\Compat\hsya0\src\Compat.jl"):1891 =#, Expr(:call, :range, Expr(:parameters, Expr(:kw, :stop, :stop), Expr(:..., :kwargs)), :start)))
-  ** incremental compilation may be broken for this module **
-WARNING: Method definition #range(Any, typeof(Base.range), Any, Any) in module Base overwritten.
-```
-That's ok as the range(a, b) behavior is no longer appreciated in Julia. This issue might be fixed by other packages. For more info: https://github.com/JuliaLang/Compat.jl/issues/640
-
 ## Package Needed
 - HTTP.jl
 - JSON.jl
