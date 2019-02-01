@@ -4,13 +4,11 @@ Testing:
 - Author: Frontal_Temp
 - Date: 2019-01-30
 =#
-push!(LOAD_PATH, ".\\src\\")
-
 using Tushare
 using YAML
 using Test
 
-s_dir = ".\\src\\Tushare.yaml"
+s_dir = "..\\src\\Tushare.yaml"
 open(s_dir) do io
   funs = YAML.load(io)
 
