@@ -2,19 +2,21 @@
 SDK for Tushare in Julia
 
 ## Environment
-Julia 1.0.1, Julia 1.1.0, Windows 10
+Julia ver >= 1.0.0
 
 ## Package Needed
-- HTTP.jl
-- JSON.jl
-- DataFrames.jl
-- YAML.jl -> dangerous, may be replaced in the future.
+- HTTP.jl (>=0.7.0)
+- JSON.jl (>=0.20.0)
+- DataFrames.jl (>=0.15.0)
+- YAML.jl (0.3.0) -> dangerous, may be replaced in the future.
 
 ## How to install
-To be accomplished. Now you can only download the source code to use this SDK. Maybe I will make it a package in the near future.
+```
+Pkg> add https://github.com/ProV1denCEX/Tushare.jl
+```
 
 ## How to use
-You need copy your token to the Token.txt. This .txt file needs to be placed in the same directory of the source code. I will make it easier to use in the near future.
+You need copy your token to the Token.txt. This .txt file needs to be placed in the same directory of your project directory.
 
 ### API supported:
 All APIs in Tushare Pro
