@@ -201,10 +201,10 @@ uuid = "3783bdb8-4a98-5b6b-af9a-565f29a5fe9c"
 version = "0.4.1"
 
 [[Tables]]
-deps = ["IteratorInterfaceExtensions", "Requires", "TableTraits", "Test"]
-git-tree-sha1 = "89f8fde6394579580fb75088e45ad95551199c7c"
+deps = ["IteratorInterfaceExtensions", "LinearAlgebra", "Requires", "TableTraits", "Test"]
+git-tree-sha1 = "37be2ed169d5771c1ac8d516d3bcb0093c49966e"
 uuid = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
-version = "0.1.14"
+version = "0.1.15"
 
 [[Test]]
 deps = ["Distributed", "InteractiveUtils", "Logging", "Random"]
@@ -225,9 +225,9 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
 [[WeakRefStrings]]
 deps = ["Missings", "Random", "Test"]
-git-tree-sha1 = "1a9511b00152bbecaf3cd59d1fadd5d23e7bb1f9"
+git-tree-sha1 = "7f8ba9345c80121e49944a9c7d9c2bc76da5f623"
 uuid = "ea10d353-3f73-51f8-a26c-33c1cb351aa5"
-version = "0.5.4"
+version = "0.5.5"
 
 [[YAML]]
 deps = ["Codecs", "Compat"]

@@ -111,12 +111,16 @@ module Tushare
               append!(c_Exprs.args, blk.args)
           end
       end
-
       c_Exprs
+
+    end
+
+    function __init__()
+        global s_tushare_api = "http://api.tushare.pro"
+        global s_token = get_token()
     end
 
     @fun_generate
 
-    const s_tushare_api = "http://api.tushare.pro"
-    const s_token = get_token()
 end
+
