@@ -413,3 +413,13 @@
   api: disclosure_date
   default_field: ts_code,ann_date,end_date,pre_date,actual_date,modify_date
   default_param: {ts_code: 000001.SZ}
+- name: accountNew
+  type: stock
+  api: stk_account
+  default_field: date,weekly_new,total,weekly_hold,weekly_trade
+  default_param: {}
+- name: accountOld
+  type: stock
+  api: stk_account_old
+  default_field: date,new_sh,new_sz,active_sh,active_sz,total_sh,total_sz,trade_sh,trade_sz
+  default_param: {}
