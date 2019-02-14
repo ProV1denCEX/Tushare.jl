@@ -101,6 +101,7 @@ shows as below:
 - get_stock_disclosure
 - get_stock_accountNew
 - get_stock_accountOld
+- get_stock_holderNum
 - get_other_news
 - get_other_BOdaily
 - get_other_BOweekly
