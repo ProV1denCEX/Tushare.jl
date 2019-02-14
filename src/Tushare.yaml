@@ -423,3 +423,8 @@
   api: stk_account_old
   default_field: date,new_sh,new_sz,active_sh,active_sz,total_sh,total_sz,trade_sh,trade_sz
   default_param: {}
+- name: holderNum
+  type: stock
+  api: stk_holdernumber
+  default_field: ts_code,ann_date,end_date,holder_num
+  default_param: {}
