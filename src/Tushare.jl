@@ -12,7 +12,7 @@ module Tushare
     end
 
     # Prototype of fetching data from api
-    function fetch_data(s_api_name::String, d_params::Dict, s_fields::String)
+    function fetch_data(s_api_name::String, d_params::Dict, s_fields::String, s_token::String)
       # Generate json
       d_json = Dict(
                   "api_name" => s_api_name,
@@ -30,7 +30,7 @@ module Tushare
       local i = 0
       while i < 5
           try
-              c_response = HTTP.post(s_tushare_api, [], JSON.json(d_json); conf...)
+              c_response = HTTP.post(TUSHARE_API, [], JSON.json(d_json); conf...)
               c_raw = JSON.Parser.parse(String(c_response.body))
           catch
               i += 1
@@ -75,9 +75,9 @@ module Tushare
       df_data
     end
 
-    function handle_get_data(d_params :: Dict, s_api :: String, s_fields :: String)
+    function handle_get_data(d_params :: Dict, s_api :: String, s_fields :: String, s_token :: String)
       # Fetch Data
-      c_data, c_fields = fetch_data(s_api, d_params, s_fields)
+      c_data, c_fields = fetch_data(s_api, d_params, s_fields, s_token)
       if c_data != nothing && c_fields != nothing
           # Re-Organize Data
           df_data = reorgnize_data(c_data, c_fields)
@@ -105,7 +105,7 @@ module Tushare
               # function definition generation
               blk = quote
                 export $(esc(fname))
-                $(esc(fname))(d_params = $(esc(ifun["default_param"])); s_api = $(esc(ifun["api"])), s_fields = $(esc(ifun["default_field"]))) = handle_get_data(d_params, s_api, s_fields)
+                $(esc(fname))(d_params = $(esc(ifun["default_param"])); s_api = $(esc(ifun["api"])), s_fields = $(esc(ifun["default_field"])), s_token = TOKEN) = handle_get_data(d_params, s_api, s_fields, s_token)
               end
 
               append!(c_Exprs.args, blk.args)
@@ -116,8 +116,8 @@ module Tushare
     end
 
     function __init__()
-        global s_tushare_api = "http://api.tushare.pro"
-        global s_token = get_token()
+        global TUSHARE_API = "http://api.tushare.pro"
+        global TOKEN = get_token()
     end
 
     @fun_generate

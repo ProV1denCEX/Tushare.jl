@@ -127,6 +127,11 @@ data_sample = Tushare.get_stock_list(Dict(), s_fields = "ts_code")
 
 The params and fields' names are totally the same with Tushare SDK of Python. You can find them here: https://tushare.pro/document/2. Or read Tushare.yaml to get more information.
 
+You can also temporarily modify your token by:
+```
+data_sample = Tushare.get_stock_list(Dict(), s_token = "a1sd56a6d5asd16a5d4s65a65s6d5a")
+```
+
 ## How to get your token
 https://tushare.pro/document/1?doc_id=13
 
