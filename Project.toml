@@ -1,7 +1,7 @@
 name = "Tushare"
 uuid = "0361113e-266b-11e9-3151-198fd98ecda9"
 authors = ["ProV1denCEX <firstematxcx@gmail.com>"]
-version = "3.1.0"
+version = "3.2.0"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
