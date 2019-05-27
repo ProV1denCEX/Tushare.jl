@@ -34,6 +34,10 @@ shows as below:
 
 ### function names that you need to call:
 - get_bond_SHIBORpricing
+- get_bond_wz_interestRate
+- get_bond_gz_interestRate
+- get_currency_basic
+- get_currency_daily
 - get_coin_BTmarketValue
 - get_coin_BTpriceVol
 - get_coin_daily
@@ -102,6 +106,9 @@ shows as below:
 - get_stock_accountNew
 - get_stock_accountOld
 - get_stock_holderNum
+- get_stock_moneyflow
+- get_stock_holdertrade
+- get_stock_announcement
 - get_other_news
 - get_other_BOdaily
 - get_other_BOweekly
@@ -113,8 +120,11 @@ shows as below:
 - get_index_daily
 - get_index_basicDaily
 - get_index_weightMonthly
+- get_index_weekly
+- get_index_monthly
 - get_other_twTechincome
 - get_other_twTechincomeDetail
+
 
 You can modify your call via 
 ```
