@@ -88,7 +88,7 @@ module Tushare
             # Re-Organize Data
             df_data = reorgnize_data(c_data, c_fields)
         else
-            error("Stock List fetch failed, Please Check: Field names, params or API change")
+            error("Data fetch failed, Please Check: Field names, params or API change")
         end
 
       df_data

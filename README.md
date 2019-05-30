@@ -125,6 +125,7 @@ shows as below:
 - get_other_twTechincome
 - get_other_twTechincomeDetail
 
+And vip functions for corresponding APIs. For more info about Tushare api, please visit the website of Tushare.
 
 You can modify your call via 
 ```
@@ -142,7 +143,7 @@ You can also temporarily modify your token by:
 data_sample = Tushare.get_stock_list(Dict(), s_token = "a1sd56a6d5asd16a5d4s65a65s6d5a")
 ```
 
-## How to get your token
+## How to get your token & vip
 https://tushare.pro/document/1?doc_id=13
 
 
