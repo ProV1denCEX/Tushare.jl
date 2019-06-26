@@ -109,6 +109,7 @@ shows as below:
 - get_stock_moneyflow
 - get_stock_holdertrade
 - get_stock_announcement
+- get_stock_limit
 - get_other_news
 - get_other_BOdaily
 - get_other_BOweekly
@@ -116,14 +117,17 @@ shows as below:
 - get_other_BOmonthly
 - get_other_filmRecord
 - get_other_cinermaDaily
+- get_other_twTechincome
+- get_other_twTechincomeDetail
+- get_other_teleplay_record
 - get_index_info
 - get_index_daily
 - get_index_basicDaily
 - get_index_weightMonthly
 - get_index_weekly
 - get_index_monthly
-- get_other_twTechincome
-- get_other_twTechincomeDetail
+- get_index_classify
+- get_index_member
 
 And vip functions for corresponding APIs. For more info about Tushare api, please visit the website of Tushare.
 

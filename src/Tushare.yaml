@@ -610,3 +610,27 @@
   default_field: ts_code,end_date,bz_item,bz_sales,bz_profit,bz_cost,curr_type,update_flag
   default_param: {period: 20181231}
   limit: null
+- name: teleplay_record
+  type: other
+  api: teleplay_record
+  default_field: name, classify, types, org, report_date, license_key, episodes, shooting_date, prod_cycle, content, pro_opi, dept_opi, remarks
+  default_param: {}
+  limit: 1000
+- name: classify
+  type: index
+  api: index_classify
+  default_field: index_code, industry_name, level, industry_code, src
+  default_param: {}
+  limit: null
+- name: member
+  type: index
+  api: index_member
+  default_field: index_code, index_name, con_code, con_name, in_date, out_date, is_new
+  default_param: {}
+  limit: 2000
+- name: limit
+  type: stock
+  api: stk_limit
+  default_field: trade_date, ts_code, pre_close, up_limit, down_limit
+  default_param: {}
+  limit: 3800
