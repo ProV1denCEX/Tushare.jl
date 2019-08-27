@@ -634,3 +634,9 @@
   default_field: trade_date, ts_code, pre_close, up_limit, down_limit
   default_param: {}
   limit: 3800
+- name: map
+  type: future
+  api: fut_mapping
+  default_field: ts_code,trade_date,mapping_ts_code
+  default_param: {}
+  limit: 2000
