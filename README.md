@@ -110,6 +110,8 @@ shows as below:
 - get_stock_holdertrade
 - get_stock_announcement
 - get_stock_limit
+- get_stock_hkbasic
+- get_stock_hkdaily
 - get_other_news
 - get_other_BOdaily
 - get_other_BOweekly

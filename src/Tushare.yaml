@@ -640,3 +640,15 @@
   default_field: ts_code,trade_date,mapping_ts_code
   default_param: {}
   limit: 2000
+- name: hkbasic
+  type: stock
+  api: hk_basic
+  default_field: ts_code,list_status
+  default_param: {}
+  limit: null
+- name: hkdaily
+  type: stock
+  api: hk_daily
+  default_field: ts_code,trade_date,start_date,end_date
+  default_param: {}
+  limit: 3000
