@@ -115,6 +115,7 @@ shows as below:
 - get_stock_hkbasic
 - get_stock_hkdaily
 - get_other_news
+- get_other_majornews
 - get_other_BOdaily
 - get_other_BOweekly
 - get_other_cctvNews

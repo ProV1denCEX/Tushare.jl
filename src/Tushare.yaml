@@ -652,3 +652,9 @@
   default_field: ts_code,trade_date,start_date,end_date
   default_param: {}
   limit: 3000
+- name: majornews
+  type: other
+  api: major_news
+  default_field: src,start_date,end_date
+  default_param: {}
+  limit: 60
