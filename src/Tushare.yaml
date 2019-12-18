@@ -361,7 +361,7 @@
 - name: dailyBasic
   type: stock
   api: daily_basic
-  default_field: ts_code,trade_date,close,turnover_rate,turnover_rate_f,volume_ratio,pe,pe_ttm,pb,ps,ps_ttm,total_share,float_share,free_share,total_mv,circ_mv
+  default_field: ts_code,trade_date,close,turnover_rate,turnover_rate_f,volume_ratio,pe,pe_ttm,pb,ps,ps_ttm,dv_ratio,dv_ttm,total_share,float_share,free_share,total_mv,circ_mv
   default_param: {ts_code: 000001.SZ}
   limit: null
 - name: suspend
@@ -657,4 +657,16 @@
   api: major_news
   default_field: src,start_date,end_date
   default_param: {}
+  limit: 60
+- name: managerInfo
+  type: stock
+  api: stk_managers
+  default_field: ts_code,ann_date,name,gender,lev,title,edu,national,birthday,begin_date,end_date,resume
+  default_param: {ts_code: 399300.SZ}
+  limit: 60
+- name: managerRewards
+  type: stock
+  api: stk_rewards
+  default_field: ts_code,ann_date,end_date,name,title,reward,hold_vol
+  default_param: {ts_code: 399300.SZ}
   limit: 60
